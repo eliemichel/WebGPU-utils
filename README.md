@@ -113,6 +113,11 @@ let color = vec4f(
 );
 ```
 
+Other resources
+---------------
+
+ - [JavaScript WebGPU utils](https://github.com/greggman/webgpu-utils)
+
 TODO
 ----
 
