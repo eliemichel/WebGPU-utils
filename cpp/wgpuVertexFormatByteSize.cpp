@@ -2,6 +2,13 @@
 
 namespace wgpu {
 
+/**
+ * Tell how many bytes a given vertex format occupies
+ * 
+ * @param format the vertex format
+ * 
+ * @return the number of bytes
+ */
 size_t vertexFormatByteSize(VertexFormat format) {
 	switch (format) {
 	case VertexFormat::Sint8x2:

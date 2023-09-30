@@ -24,15 +24,15 @@ Each utility function is provided in its own file for clarity; the recommended w
 Available utility functions
 ---------------------------
 
-### `wgpuMaxMipLevels`
+### `maxMipLevelCount`
 
-[`C`](c/wgpuMaxMipLevels.c) | [`JavaScript`](js/wgpuMaxMipLevels.js)
+[`C`](c/wgpuMaxMipLevelCount.c) | [`C++`](cpp/wgpuMaxMipLevelCount.cpp) | [`JavaScript`](js/wgpuMaxMipLevelCount.js)
 
 ```C
-uint32_t wgpuMaxMipLevels(WGPUExtent size, WGPUTextureDimension dimension);
-uint32_t wgpuMaxMipLevels1D(WGPUExtent size);
-uint32_t wgpuMaxMipLevels2D(WGPUExtent size);
-uint32_t wgpuMaxMipLevels3D(WGPUExtent size);
+uint32_t wgpuMaxMipLevelCount(WGPUExtent size, WGPUTextureDimension dimension);
+uint32_t wgpuMaxMipLevelCount1D(WGPUExtent size);
+uint32_t wgpuMaxMipLevelCount2D(WGPUExtent size);
+uint32_t wgpuMaxMipLevelCount3D(WGPUExtent size);
 ```
 
 Compute the maximum number of MIP levels for a texture as standardized [in WebGPU spec](https://www.w3.org/TR/webgpu/#abstract-opdef-maximum-miplevel-count).
@@ -47,12 +47,12 @@ You may specify the dimension either statically in the name of the function or d
 
 ```C
 // Example of use case
-textureDesc.mipLevelCount = wgpuMaxMipLevels(textureDesc.size, textureDesc.dimension);
+textureDesc.mipLevelCount = wgpuMaxMipLevelCount(textureDesc.size, textureDesc.dimension);
 ```
 
-### `wgpuTextureFormatGamma`
+### `textureFormatGamma`
 
-[`C`](c/wgpuTextureFormatGamma.c) | [`JavaScript`](js/wgpuTextureFormatGamma.js)
+[`C`](c/wgpuTextureFormatGamma.c) | [`C++`](cpp/wgpuTextureFormatGamma.cpp) | [`JavaScript`](js/wgpuTextureFormatGamma.js)
 
 ```C
 float wgpuTextureFormatGamma(WGPUTextureFormat format);
@@ -73,6 +73,66 @@ should end like this (assuming it is operating on linear colors):
 // Example of use case
 let corrected_color = pow(linear_color, vec4f(gamma));
 return corrected_color;
+```
+
+### `textureFormatBitsPerTexel`
+
+[`C++`](cpp/wgpuTextureFormatBitsPerTexel.cpp)
+
+```C
+uint32_t wgpuTextureFormatBitsPerTexel(WGPUTextureFormat format);
+```
+
+Tell how many bits each texel occupies for a given texture format has.
+
+**param `format`** the texel format of the texture
+
+**return** the number of bits
+
+**NB:** Some compressed format use less than 1 byte (8 bits) per texel, which
+is why this function cannot return a byte number instead of bits.
+
+```C
+// Example of use case
+sourceLayout.bytesPerRow = wgpuTextureFormatBitsPerTexel(textureDesc.format) * textureDesc.size.width / 8;
+```
+
+### `textureFormatChannelCount`
+
+[`C++`](cpp/wgpuTextureFormatChannelCount.cpp)
+
+```C
+uint32_t wgpuTextureFormatChannelCount(WGPUTextureFormat format);
+```
+
+Tell how many channels a given texture format has
+
+**param `format`** the texel format of the texture
+
+**return** the number of channels
+
+```C
+// Example of use case
+wgpuTextureFormatChannelCount(textureDesc.format);
+```
+
+### `vertexFormatByteSize`
+
+[`C++`](cpp/wgpuVertexFormatByteSize.cpp)
+
+```C
+uint32_t wgpuVertexFormatByteSize(WGPUTextureFormat format);
+```
+
+Tell how many bytes a given vertex format occupies.
+
+**param `format`** the vertex format
+
+**return** the number of bytes
+
+```C
+// Example of use case
+layout.arrayStride = wgpuVertexFormatByteSize(attrib.format);
 ```
 
 ### `textureGatherWeights`
