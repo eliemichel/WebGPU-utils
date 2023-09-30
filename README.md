@@ -15,9 +15,11 @@ WebGPU standard utils
 
 This tiny library provides bunch of utility functions that solely depend on `webgpu.h` and implement information coming from the **WebGPU specification** but not directly available in `webgpu.h`.
 
-Functions are available in **C**, **JavaScript** and **WGSL** depending on the context.
+Functions are available in **C**, **C++**, **JavaScript** and **WGSL** depending on the context.
 
 Each utility function is provided in its own file for clarity; the recommended way to use them is to **copy paste them in your project**.
+
+**NB** The C++ directory is likely more complete than the others at the moment.
 
 Available utility functions
 ---------------------------
