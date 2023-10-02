@@ -19,6 +19,8 @@ Functions are available in **C**, **C++**, **JavaScript** and **WGSL** depending
 
 Each utility function is provided in its own file for clarity; the recommended way to use them is to **copy paste them in your project**.
 
+These are **unopinionated utils**, meaning that they are written like anybody would write them because they address very straighforward utility problems. Anything more advanced does not belong here.
+
 **NB** The C++ directory is likely more complete than the others at the moment.
 
 Available utility functions
@@ -114,6 +116,31 @@ Tell how many channels a given texture format has
 ```C
 // Example of use case
 wgpuTextureFormatChannelCount(textureDesc.format);
+```
+
+### `textureFormatSupportedSampleType`
+
+[`C++`](cpp/wgpuTextureFormatSupportedSampleType.cpp)
+
+```C
+uint32_t wgpuTextureFormatSupportedSampleType(WGPUTextureFormat format);
+```
+
+Provide an example of sample type that can be used with the texture.
+
+**param `format`** the texel format of the texture
+
+**return** one supported sample type from a given texture format
+
+**NB:** Among the possibilities, UnfilterableFloat is not returned unless it is
+the only possibility
+
+**NB:** For mixed depth/stencil textures the query is ambiguous because it
+depends on the aspect. In such a case this function returns Depth.
+
+```C
+// Example of use case
+bindGroupLayoutEntry.texture.sampleType = wgpuTextureFormatSupportedSampleType(texture.getFormat());
 ```
 
 ### `vertexFormatByteSize`
