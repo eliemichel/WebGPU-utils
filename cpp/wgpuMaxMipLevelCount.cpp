@@ -25,7 +25,7 @@ uint32_t maxMipLevelCount1D(WGPUExtent3D size) {
  * dimension is 2D.
  */
 uint32_t maxMipLevelCount2D(WGPUExtent3D size) {
-	return bit_width(std::max(size.width, size.height));
+	return std::max(1U, bit_width(std::max(size.width, size.height)));
 }
 
 /**
@@ -33,7 +33,7 @@ uint32_t maxMipLevelCount2D(WGPUExtent3D size) {
  * dimension is 3D.
  */
 uint32_t maxMipLevelCount3D(WGPUExtent3D size) {
-	return bit_width(std::max(size.width, std::max(size.height, size.depthOrArrayLayers)));
+	return std::max(1U, bit_width(std::max(size.width, std::max(size.height, size.depthOrArrayLayers))));
 }
 
 /**
