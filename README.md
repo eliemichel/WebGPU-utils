@@ -17,7 +17,7 @@ This tiny library provides bunch of utility functions that solely depend on `web
 
 Functions are available in **C**, **C++**, **JavaScript** and **WGSL** depending on the context.
 
-Each utility function is provided in its own file for clarity; the recommended way to use them is to **copy paste them in your project**.
+Utility functions for C++ are consolidated in [`webgpu_std_utils.hpp`](webgpu_std_utils.hpp) and assume that you are using a C++ wrapper like [WebGPU-C++](https://github.com/eliemichel/WebGPU-Cpp). Each utility function is also provided in its own file for clarity; and can be individually **copy pasted in your project**.
 
 These are **unopinionated utils**, meaning that they are written like anybody would write them because they address very straighforward utility problems. Anything more advanced does not belong here.
 
