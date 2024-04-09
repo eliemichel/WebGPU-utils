@@ -123,7 +123,7 @@ wgpuTextureFormatChannelCount(textureDesc.format);
 [`C++`](cpp/wgpuTextureFormatSupportedSampleType.cpp)
 
 ```C
-uint32_t wgpuTextureFormatSupportedSampleType(WGPUTextureFormat format);
+WGPUTextureSampleType wgpuTextureFormatSupportedSampleType(WGPUTextureFormat format);
 ```
 
 Provide an example of sample type that can be used with the texture.
